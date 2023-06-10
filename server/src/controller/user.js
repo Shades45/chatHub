@@ -22,7 +22,16 @@ const registerNewUser=  async (req,res)=>{
       isLoggedIn: false,
       msg: "user doesnnot exist"
     })
-  }
-
+  } 
 }
-  module.exports = {registerNewUser,loginUser}
+
+const getAllUser =  async (req,res)=>{
+  const data = await User.find()
+  if(data){
+    res.json({
+    userList: data
+    })
+  }
+}
+
+module.exports = {registerNewUser,loginUser, getAllUser}

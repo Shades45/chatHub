@@ -41,7 +41,7 @@ const Login = ( )=> {
                 <div>{errors.phoneNumber}</div>
               ) : null}
               <br/>
-              <Field name="password" password= "password" placeholder="password"/>
+              <Field name="password" type= "password" placeholder="password"/>
               {errors.password && touched.password? (
                 <div>{errors.password}</div>
               ) : null}
