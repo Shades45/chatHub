@@ -1,11 +1,11 @@
 const mongoose= require('mongoose')
 
 const userSchema =  new mongoose.Schema({
-  email: {type: String}, 
-  password:  {type: String}, 
-  phoneNumber: {type: String}, 
-  cartCount: {type: Number, default:0},
-  favList: [{type: String}]
+  firstName: {type: String}, 
+  lastName:  {type: String}, 
+  phoneNumber: {type: Number}, 
+  password: {type: String},
+  Status: {type: String, default: 'pending'}
   });
   const User = mongoose.model('User', userSchema);
 

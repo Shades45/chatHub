@@ -10,7 +10,7 @@ const Login = ( )=> {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values)
     };
-    const res = await fetch('http://localhost:3001/login', requestOptions)
+    const res = await fetch('http://localhost:3005/login', requestOptions)
     const data = await res.json()
   
     if(data.isLoggedIn){
@@ -41,7 +41,7 @@ const Login = ( )=> {
                 <div>{errors.phoneNumber}</div>
               ) : null}
               <br/>
-              <Field name="password" placeholder="password"/>
+              <Field name="password" password= "password" placeholder="password"/>
               {errors.password && touched.password? (
                 <div>{errors.password}</div>
               ) : null}
