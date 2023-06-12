@@ -3,11 +3,28 @@ import * as Yup from 'yup';
 import Link from 'next/link';
 
 const Register = ( )=> {
-   
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+  const SignupSchema = Yup.object().shape({
+    firstName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    lastName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(50, 'Too Long!')
+      .required('Required'),
+    phoneNumber: Yup.string()
+      .matches(phoneRegExp, 'Phone number is not valid')
+      .required('Required'),
+    password: Yup.string()
+      .min(8, 'Must be 8 characters')
+      .required('Required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password')], 'Password didnt match')
+  });
     return (
         <div>
-    
-      
         <Formik
           initialValues={{
             firstName: '',
@@ -16,6 +33,7 @@ const Register = ( )=> {
             password: '',
             confirmPassword: '',
           }}
+          validationSchema={SignupSchema}
           onSubmit={values => {
             const requestOptions = {
               method: 'POST',
