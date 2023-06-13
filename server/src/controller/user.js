@@ -19,9 +19,9 @@ const registerNewUser=  async (req,res)=>{
   const data = await User.findOne({phoneNumber: req.body.phoneNumber})
 
   const matchPassword = await bcrypt.compareSync(req.body.password, data.password);
-
+  console.log(matchPassword)
   const token = jwt.sign({ phoneNumber: req.body.phoneNumber }, process.env.SECRET_KEY);
-
+  
   if(data && matchPassword){
     res.json({
     isLoggedIn: true,
