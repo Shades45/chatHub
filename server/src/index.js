@@ -9,13 +9,10 @@ const userRoute = require('./routes/user')
 
 
 
-connectDb
+connectDb()
 
+app.use('/', userRoute)
 
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`)
