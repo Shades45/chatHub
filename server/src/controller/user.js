@@ -19,7 +19,7 @@ const registerNewUser=  async (req,res)=>{
   const data = await User.findOne({phoneNumber: req.body.phoneNumber})
 
   
-  const token = jwt.sign({ phoneNumber: req.body.phoneNumber }, process.env.SECRET_KEY);
+  // const token = jwt.sign({ phoneNumber: req.body.phoneNumber }, process.env.SECRET_KEY);
   
   if(data){
     const matchPassword = await bcrypt.compareSync(req.body.password, data.password);
@@ -29,7 +29,8 @@ const registerNewUser=  async (req,res)=>{
         isLoggedIn: true,
         msg:  "success",
         id: data._id,
-        token: token
+        token: token,
+        phoneNumber: data.phoneNumber
         })
       }else{
         res.json({
@@ -54,4 +55,4 @@ const getAllUser =  async (req,res)=>{
   }
 }
 
-module.exports = {registerNewUser,loginUser, getAllUser}
+module.exports = {registerNewUser, loginUser, getAllUser}

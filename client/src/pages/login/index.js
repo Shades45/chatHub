@@ -2,9 +2,10 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
 import {useDispatch, useSelector} from "react-redux";
-import { changeToken } from '../../redux/reducers/userSlice';
+import { setUserDetails } from '../../redux/reducers/userSlice';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
+// import Users from '../users';
 
 const Login = ( )=> {
   const [error, setError] = useState('')
@@ -22,13 +23,14 @@ const Login = ( )=> {
   
 
   if(data.isLoggedIn){
-    dispatch(changeToken(data))
+    dispatch(setUserDetails(data))
     router.push('/users')
   }else{
     setError(data.msg)
   }
 
   }
+  
   return (
     <div>
       {token}
@@ -45,12 +47,12 @@ const Login = ( )=> {
     >
       {({ errors, touched }) => (
         <Form>
-          <Field name="phoneNumber" placeholder="phoneNumber"/>
+          <Field className= "form-control" name="phoneNumber" placeholder="Mobile Number"/>
           {errors.phoneNumber && touched.phoneNumber ? (
             <div>{errors.phoneNumber}</div>
           ) : null}
           <br/>
-          <Field name="password" type= "password" placeholder="password"/>
+          <Field className= "form-control" name="password" type= "password" placeholder="Password"/>
           {errors.password && touched.password? (
             <div>{errors.password}</div>
           ) : null}
@@ -63,6 +65,7 @@ const Login = ( )=> {
     </Formik>
     </div>
     )
+    
 }
 
 
