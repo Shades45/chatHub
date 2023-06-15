@@ -1,4 +1,10 @@
-
+.margin{
+  margin: auto;
+  border-style: solid;
+  padding: 10px;
+  width: 50%;
+  width: fit-content;
+}
 body{
   background: #fff;
   font-family: 'PT Sans', sans-serif;

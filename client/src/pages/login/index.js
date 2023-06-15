@@ -32,7 +32,7 @@ const Login = ( )=> {
   }
   
   return (
-    <div>
+    <div className='margin'>
       {token}
   
     <Formik

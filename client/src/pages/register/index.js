@@ -26,7 +26,7 @@ const Register = ( )=> {
       .required('Required'),
   });
     return (
-        <div>
+        <div className='margin'>
         <Formik
           initialValues={{
             firstName: '',
