@@ -27,6 +27,7 @@ const Register = ( )=> {
   });
     return (
         <div className='margin'>
+          <h1 style={{textAlign: 'center'}}>Register</h1>
         <Formik
           initialValues={{
             firstName: '',
@@ -74,7 +75,7 @@ const Register = ( )=> {
               ) : null}
               <br/>
               
-              <button type="submit">Submit</button>
+              <button type="submit" style={{textAlign: 'center'}}>Submit</button><br/>
               Already User <Link href="/login">Sign In</Link>
             </Form>
           )}

@@ -26,7 +26,7 @@ export default function BasicMenu() {
     router.push('../../login')
   }
   return (
-    <div>
+    <div style={{float: 'right'}}>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}

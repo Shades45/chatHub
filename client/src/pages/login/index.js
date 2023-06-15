@@ -1,7 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import { setUserDetails } from '../../redux/reducers/userSlice';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 const Login = ( )=> {
   const [error, setError] = useState('')
   const router = useRouter()
-  const {token} = useSelector(state=>state.user)
+  // const {token} = useSelector(state=>state.user)
   const dispatch = useDispatch()
   const triggerLogin = async(values)=>{
       const requestOptions = {
@@ -33,8 +33,8 @@ const Login = ( )=> {
   
   return (
     <div className='margin'>
-      {token}
-  
+      {/* {token} */}
+      <h1 style={{textAlign: 'center'}}>Login</h1>
     <Formik
       initialValues={{
         phoneNumber: '',
@@ -46,7 +46,7 @@ const Login = ( )=> {
       }}
     >
       {({ errors, touched }) => (
-        <Form>
+        <Form style={{textAlign: 'center'}}>
           <Field className= "form-control" name="phoneNumber" placeholder="Mobile Number"/>
           {errors.phoneNumber && touched.phoneNumber ? (
             <div>{errors.phoneNumber}</div>
@@ -58,7 +58,7 @@ const Login = ( )=> {
           ) : null}
           <br/>
           <span style={{color: 'red'}}>{error}</span>
-          <button type="submit">Submit</button>
+          <button type="submit">Submit</button><br/>
           Dont have an account yet ? <Link href="/register">Sign Up</Link>
         </Form>
       )}
