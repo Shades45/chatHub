@@ -3,15 +3,21 @@ import * as Yup from 'yup';
 import Link from 'next/link';
 import {useDispatch} from "react-redux";
 import { setUserDetails } from '../../redux/reducers/userSlice';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router'
 // import Users from '../users';
 
 const Login = ( )=> {
+  const initialRef = useRef(null)
   const [error, setError] = useState('')
   const router = useRouter()
   // const {token} = useSelector(state=>state.user)
   const dispatch = useDispatch()
+
+  useEffect(()=>{
+    initialRef.current.focus()
+  },[])
+  
   const triggerLogin = async(values)=>{
       const requestOptions = {
         method: 'POST',
@@ -20,11 +26,10 @@ const Login = ( )=> {
   };
   const res = await fetch('http://localhost:3005/login', requestOptions)
   const data = await res.json()
-  
-
+ 
   if(data.isLoggedIn){
     dispatch(setUserDetails(data))
-    router.push('/users')
+    // router.push('/users')
   }else{
     setError(data.msg)
   }
@@ -47,7 +52,7 @@ const Login = ( )=> {
     >
       {({ errors, touched }) => (
         <Form style={{textAlign: 'center'}}>
-          <Field className= "form-control" name="phoneNumber" placeholder="Mobile Number"/>
+          <Field className= "form-control" name="phoneNumber" placeholder="Mobile Number" innerRef= {initialRef}/>
           {errors.phoneNumber && touched.phoneNumber ? (
             <div>{errors.phoneNumber}</div>
           ) : null}

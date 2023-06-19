@@ -7,12 +7,12 @@ import Stack from '@mui/material/Stack';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import { resetUser } from '@/redux/reducers/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 
 export default function BasicMenu() {
   const dispatch = useDispatch()
-  const router = useRouter()
+  // const router = useRouter()
   
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -22,11 +22,11 @@ export default function BasicMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const navigate = () => {
-    router.push('../../login')
-  }
+  // const navigate = () => {
+  //   router.push('../../login')
+  // }
   return (
-    <div style={{float: 'right'}}>
+    <div>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -49,7 +49,9 @@ export default function BasicMenu() {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={()=> {dispatch(resetUser()); navigate()}}>Logout</MenuItem>
+        <MenuItem onClick={()=> {dispatch(resetUser()); 
+          // navigate()
+          }}>Logout</MenuItem>
       </Menu>
     </div>
   );

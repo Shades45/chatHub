@@ -9,19 +9,19 @@ import Users from './users'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  // const {token} = useSelector(state=> state.user)
-  // if (!token) {
-  //   return (
-  //     <Login/>
-  //   )
-  // }else {
-  //   return (
-  //     <Users/>
-  //   )
-  // }
-  return (
-    <>
-    <p>Hi</p>
-    </>
-  )
+  const {token} = useSelector(state=> state.user)
+  if (!token) {
+    return (
+      <Login/>
+    )
+  }else {
+    return (
+      <Users/>
+    )
+  }
+  // return (
+  //   <>
+  //   <p>Hi</p>
+  //   </>
+  // )
 }
