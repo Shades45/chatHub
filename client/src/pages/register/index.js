@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
+ 
 
 const Register = ( )=> {
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -22,9 +23,11 @@ const Register = ( )=> {
       .required('Required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password')], 'Password didnt match')
+      .required('Required'),
   });
     return (
-        <div>
+        <div className='margin'>
+          <h1 style={{textAlign: 'center'}}>Register</h1>
         <Formik
           initialValues={{
             firstName: '',
@@ -45,34 +48,34 @@ const Register = ( )=> {
           }}
         >
           {({ errors, touched }) => (
-            <Form>
-              <Field name="firstName" placeholder="Enter Firstname"/>
+            <Form className='body'>
+              <Field className= "form-control" name="firstName" placeholder="Firstname"/>
               {errors.firstName && touched.firstName ? (
                 <div>{errors.firstName}</div>
               ) : null}
-              <br/>
-              <Field name="lastName" placeholder="Enter Lastname"/>
+              
+              <Field className= "form-control" name="lastName" placeholder="Lastname"/>
               {errors.lastName && touched.lastName ? (
                 <div>{errors.lastName}</div>
               ) : null}
               <br/>
-              <Field name="phoneNumber" placeholder="Enter Phonenumber"/>
+              <Field className= "form-control" name="phoneNumber" placeholder="Mobile Number"/>
               {errors.phoneNumber && touched.phoneNumber ? (
                 <div>{errors.phoneNumber}</div>
               ) : null}
               <br/>
-              <Field name="password" type="password" placeholder="Enter Password"/>
+              <Field className= "form-control" name="password" type="password" placeholder="New Password"/>
               {errors.password && touched.password? (
                 <div>{errors.password}</div>
               ) : null}
               <br/>
-              <Field name="confirmPassword" type="password" placeholder="Confirm Password"/>
+              <Field className= "form-control" name="confirmPassword" type="password" placeholder="Confirm Password"/>
               {errors.confirmPassword && touched.confirmPassword? (
                 <div>{errors.confirmPassword}</div>
               ) : null}
               <br/>
               
-              <button type="submit">Submit</button>
+              <button type="submit" style={{textAlign: 'center'}}>Submit</button><br/>
               Already User <Link href="/login">Sign In</Link>
             </Form>
           )}
